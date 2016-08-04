@@ -1,0 +1,32 @@
+If you would like to integrate the Firebase libraries into one of your own projects,
+you need to perform a few basic tasks to prepare your Android Studio project.
+You may have already done this as part of adding Firebase to your app.
+
+First, add rules to your root-level build.gradle file, to include the google-services plugin:
+
+buildscript {
+    // ...
+    dependencies {
+        // ...
+        classpath 'com.google.gms:google-services:3.0.0'
+    }
+}
+Then, in your module Gradle file (usually the app/build.gradle), add the apply plugin line at the bottom of the file to enable the Gradle plugin:
+
+apply plugin: 'com.android.application'
+
+android {
+  // ...
+}
+
+dependencies {
+  // ...
+  compile 'com.google.firebase:firebase-core:9.4.0'
+}
+
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'
+You should also add the dependencies for the Firebase SDKs you wish to use - we recommend starting with the firebase-core, which include Firebase Analytics, but see below for the full list.
+
+Note: If you want to know more about what the Gradle plugin does, see our Google Services Gradle Plugin guide
+
